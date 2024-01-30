@@ -1,0 +1,59 @@
+.form{
+   padding: 50px 0px;
+   color: black;
+   max-width: 600px;
+   input, select{
+      border-radius: 8px;
+      border: 1px solid #CCC;
+      background: #fff;
+      padding: 10px 10px 10px 20px;
+   }
+   .errorMasege{
+      padding-top: 5px;
+      color: #EB5757;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px; /* 150% */
+   }
+   h1{
+      color: black;
+      font-weight: 600;
+      font-size: 36px;
+      padding-bottom: 25px;
+   }
+   .input-wrap{
+      padding: 15px 0px;
+      display: flex;
+      flex-direction: column;
+      label{
+         color: #666;
+         font-size: 12px;
+         font-weight: 600;
+         line-height: 18px; 
+      }
+   }
+   .button-wrap{
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      button{
+         border-radius: 8px;
+         background:#7A5CFA;
+         padding: 12px 35px;
+         color: white;
+         font-size: 18px;
+      }
+   }
+   .checkbox-wrap{
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      label{
+         padding-left: 5px;
+         color: #666;
+         font-size: 16px;
+         font-weight: 400;
+         line-height: 24px; /* 150% */
+      }
+   }
+}  

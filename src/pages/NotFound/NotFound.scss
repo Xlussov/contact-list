@@ -1,0 +1,107 @@
+.notFound{
+      font-family: sans-serif;
+      color: #FFF;
+      display: flex;
+      flex: 1;
+      justify-content: space-around;
+      align-items: center;
+      .notFound__content{
+         text-align: center;
+         h1{
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 14.5px;
+            padding-bottom: 20px;
+         }
+         h2{
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            padding-bottom: 20px;
+         }
+         p{
+            color: #A1A1AA;
+            font-size: 18px;
+            font-weight: 400;
+            padding-bottom: 20px;
+         }
+         .btn-wrap{
+            .btn{
+               transition: .3s all linear;
+               display: inline-block;
+               padding: 16px;
+               border-radius: 60px;
+               font-family: Roboto;
+               border: 1px solid transparent;
+               background: linear-gradient(black,black) padding-box, linear-gradient(to right, #6ed4fe 0%, #7f68f9 100%) border-box;
+               &:hover{
+                  transition: .3s all linear;
+                  border: 1px solid white;
+               }
+               .link{
+                  color: white;
+               }
+            }
+         }
+      }
+      .notFound__astronaut{
+         position: relative;
+         width: 700px;
+         height: 700px;
+         background-image: url(../../img/patern.png), url(../../img/background.png);
+         background-size: cover;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px); 
+            }
+            100% {
+                transform: translateY(0);
+            }
+         }
+
+         @keyframes floatingRock {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px); 
+            }
+            100% {
+                transform: translateY(0);
+            }
+         }
+        
+         .astronaut{
+            animation: floating 9s ease-in-out infinite; 
+         }
+         .star1{
+            position: absolute;
+            top: 200px;
+            right: 300px;
+         }
+         .star2{
+            position: absolute;
+            bottom: 200px;
+            left: 250px;
+         }
+         .rock1{
+            animation: floatingRock 10s ease-in-out infinite; 
+            position: absolute;
+            bottom: 250px;
+            left: 200px;
+         }
+         .rock2{
+            animation: floatingRock 8s ease-in-out infinite; 
+            position: absolute;
+            top: 250px;
+            right: 230px;
+         }
+      }}
+
+
