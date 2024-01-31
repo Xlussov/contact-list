@@ -1,10 +1,14 @@
 import './NewContact.scss'
-
 // valid
-
 import * as Yup from 'yup'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
+
 import { v4 as uuidv4 } from 'uuid';
+
+import { Link } from "react-router-dom"
+
+import Successmark from '../../img/Successmark.svg'
+
 
 const NewContact = () =>{
   const body = document.querySelector('body')
@@ -21,23 +25,55 @@ const NewContact = () =>{
   }
 
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    phone: Yup.string().required('Phone is required'),
+    name: Yup.string().min(2,'The name cannot be less than 2 characters')
+    .max(30,'The name cannot be more than 30 characters')
+    .matches(/^[^\d]*$/, 'The name cannot include numbers').required('Name is required'),
+
+    phone: Yup.string()
+    .matches(/^\+[0-9]+$/, 'Phone number must contain only digits')
+    .min(3, 'The phone number cannot be less than 3 characters')
+    .max(13, 'The phone number cannot be more than 12 characters')
+    .required('Phone is required'),
+
     email: Yup.string().email('Invalid email').required('Phone is required'),
     avatar: Yup.string().url('Invalid URL').required('URL is required'),
     gender: Yup.string().oneOf(['men','women'], 'Invalid gender').required('Gender is required'),
-    status: Yup.string().oneOf(['work','family','freind', 'private'], 'Status').required('Status is required'),
+    status: Yup.string().oneOf(['work','family','freind', 'private'], 'Invalid status').required('Status is required'),
     favorite: Yup.boolean()
     
   })
+
+  const alert = () => {
+    const alertWrap = document.querySelector('.alert')
+    alertWrap.style.display = 'flex'
+    setTimeout(()=> {
+      alertWrap.style.display = 'none'
+      document.location = '/new-contact'
+    },3500)
+  }
   
   const handleSubmit = (values, {setSubmitting}) => {
     console.log(values);
+    if(values){
+      alert()
+    }
     setSubmitting(true)
   }
-
-   return(
+   
+  return(
       <div className='container form'>
+        <div className="alert">
+          <div className="text-block">
+            <img src={Successmark} alt="Successmark"/>
+            <h2>Successfull</h2>
+            <p>You have added a new contact</p>
+            <div className='btn-wrap'>
+              <div className="btn">
+                <Link className="link" to='/'>Back to home</Link>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="modal-content rounded addPage"></div>
         <div className="modal-header">
           <h1 className='text-center'>Add new contact</h1>
@@ -86,8 +122,11 @@ const NewContact = () =>{
                 <ErrorMessage name='status' component='p' className='errorMasege'/>
               </div>
               <div className='checkbox-wrap'>
-                <label htmlFor="favorite">Favorite</label>
-                <Field type='checkbox' name='favorite' id='favorite'/>
+                <Field className='checkbox' type='checkbox' name='favorite' id='favorite'/>
+                <label htmlFor="favorite">
+                  <span className='star'></span>
+                  <p>Add contact to favorite</p>
+                </label>
                 <ErrorMessage name='favorite' component='p' className='errorMasege'/>
               </div>
               <div className="button-wrap">

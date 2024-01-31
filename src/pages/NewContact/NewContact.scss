@@ -9,6 +9,8 @@
       padding: 10px 10px 10px 20px;
    }
    .errorMasege{
+      position: absolute;
+      bottom: -5px;
       padding-top: 5px;
       color: #EB5757;
       font-size: 12px;
@@ -22,6 +24,7 @@
       padding-bottom: 25px;
    }
    .input-wrap{
+      position: relative;
       padding: 15px 0px;
       display: flex;
       flex-direction: column;
@@ -37,23 +40,124 @@
       display: flex;
       justify-content: center;
       button{
+         transition: .3s all linear;
          border-radius: 8px;
          background:#7A5CFA;
+         border: 1px solid #7A5CFA;
          padding: 12px 35px;
          color: white;
          font-size: 18px;
+         &:hover{
+            transition: .3s all linear;
+            background-color: #fff;
+            color: #7A5CFA;
+         }
       }
    }
    .checkbox-wrap{
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: flex-end;
-      label{
-         padding-left: 5px;
-         color: #666;
-         font-size: 16px;
-         font-weight: 400;
-         line-height: 24px; /* 150% */
+      padding-top: 15px;
+      .checkbox{
+         position: relative;
+         opacity: 0;
+         top: 0;
+         right: 0;
+         width: 0;
+         height: 0;
+         &:checked + label span{
+            &::before{
+               transition: .3s all ease-in-out;
+               content: url('../../img/fill-yellow.svg');
+            }
+         }
+         &:hover + label span{
+            &::before{
+               transition: .3s all ease-in-out;
+               content: url('../../img/fill-yellow.svg');
+            }
+         }
       }
+      label{
+         display: flex;
+         align-items: center;
+         p{
+            padding-left: 10px;
+            color: #666;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px; 
+         }
+         span{
+            &::before{
+               transition: .3s all ease-in-out;
+               content: url('../../img/fill-none.svg');
+            }
+         }
+      }
+   }
+   .star{
+      font-size: 14px;
+   }
+   .alert{
+      width: 100vw;
+      height: 100vh;
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background-color: rgba(1,1,1,0.5);
+      justify-content: center;
+      align-items: center;
+      .text-block{
+         text-align: center;
+         border-radius: 8px;
+         padding: 40px 100px;
+         background-color: white;
+         img{
+            padding-bottom: 20px;
+         }
+         h2{
+            padding-bottom: 15px;
+            color:#1E232C;
+            font-family: Urbanist;
+            font-size: 26px;
+            font-weight: 700;
+         }
+         p{
+            color:#8391A1;
+            font-family: Urbanist;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 150%;
+            padding-bottom: 20px;
+         }
+         .btn-wrap{
+            display: flex;
+            justify-content: center;
+            .btn{
+               transition: .3s all linear;
+               border-radius: 8px;
+               background: #1E232C;
+               border: 1px solid #1E232C;
+               padding: 17px 80px;
+               .link{
+                  transition: .3s all linear;
+                  color: #FFF;
+                  font-family: Urbanist;
+                  font-size: 15px;
+                  font-weight: 600;
+               }
+               &:hover{
+                  transition: .3s all linear;
+                  background-color: #FFF;
+                  .link{
+                     color: #1E232C;
+                  }
+               }
+            }
+         }
+      }
+      display: none;
+
    }
 }  
