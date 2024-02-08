@@ -1,29 +1,32 @@
 header{
-   background-color: black;
+   // background-color: black;
    .header-wraper{
       display: flex;
       justify-content: space-between;
-      border-radius: 10px;
       padding: 10px 0px;
+      border-bottom: 1px solid rgb(194, 194, 194);
       .header-links{
          display: flex;
          align-items: center;
+         a:first-child{
+            padding-left: 0px;
+         }
          .navbar-brand{
-            color: #f1f1f1;
-            font-size: 14px;
+            color: #494949;
+            font-size: 18px;
             font-weight: 500;
             padding: 0px 15px;
             text-transform: uppercase;
-            &:hover{
-               color: #ebebeb;
-            }
-            &:active{
-               color: #ebebeb;
-            }
+            // &:hover{
+            //    color: #ad0000;
+            // }
+            // &:active{
+            //    color: #ad0000;
+            // }
          }
       }
       .header-search{
-         margin: 0px 10px;
+         margin: 0px 0px 0px 10px;
          border-radius: 10px;
          border: 1px solid #D6D8DE; 
          background-color: transparent;
@@ -34,7 +37,7 @@ header{
          }
          input{
             width: 300px;
-            color: #D6D8DE;
+            color: #494949;
             background-color: transparent;
          }
       }

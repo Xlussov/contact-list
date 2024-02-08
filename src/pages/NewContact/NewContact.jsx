@@ -1,16 +1,46 @@
 import './NewContact.scss'
 // valid
-import * as Yup from 'yup'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { Link } from "react-router-dom"
+import { Link , useNavigate} from "react-router-dom"
+// import { useNavigate } from 'react-router-dom';
 
 import Successmark from '../../img/Successmark.svg'
 
+import { validationSchema } from './Validation/validation.js'
 
-const NewContact = () =>{
+const NewContact = ({onNewContact}) =>{
+  // const xhr = new XMLHttpRequest();
+
+  // // Открываем соединение с сервером и указываем метод запроса и URL-адрес файла
+  // xhr.open('GET','https://drive.google.com/file/d/1Y73FdVv3WNh6HEDfH98jl4FXQGAd0vVO/view?usp=sharing', true);
+
+  // // Отправляем запрос на сервер
+  // xhr.send();
+
+  // // Назначаем обработчик события загрузки файла
+  // xhr.onload = function() {
+  // if (xhr.status === 200) {
+  //     // Если файл успешно загружен, получаем его содержимое
+  //   const fileContent = xhr.responseText;
+
+  //    const regex = /https:\/\/\S+/g; // Регулярное выражение для поиска строк, начинающихся с "https://"
+  //    const matches = fileContent.match(regex); // Находим все совпадения
+
+  //    if (matches) {
+  //         const str = matches[7].split(',')[0].split('"')[0]
+  //         const lastSlashIndex = str.lastIndexOf('/');
+  //         console.log(str.split(`\\`)[0]);      
+  //    } else {
+  //        console.log("Не найдено ни одной строки, начинающейся с 'https://'");
+  //    }
+  // }
+// }
+
+
+
   const body = document.querySelector('body')
   body.style.backgroundColor = '#fff'
   const initialValues = {
@@ -24,40 +54,24 @@ const NewContact = () =>{
     favorite: false,
   }
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().min(2,'The name cannot be less than 2 characters')
-    .max(30,'The name cannot be more than 30 characters')
-    .matches(/^[^\d]*$/, 'The name cannot include numbers').required('Name is required'),
 
-    phone: Yup.string()
-    .matches(/^\+[0-9]+$/, 'Phone number must contain only digits')
-    .min(3, 'The phone number cannot be less than 3 characters')
-    .max(13, 'The phone number cannot be more than 12 characters')
-    .required('Phone is required'),
 
-    email: Yup.string().email('Invalid email').required('Phone is required'),
-    avatar: Yup.string().url('Invalid URL').required('URL is required'),
-    gender: Yup.string().oneOf(['men','women'], 'Invalid gender').required('Gender is required'),
-    status: Yup.string().oneOf(['work','family','freind', 'private'], 'Invalid status').required('Status is required'),
-    favorite: Yup.boolean()
-    
-  })
-
+  // const navigate = useNavigate()
   const alert = () => {
     const alertWrap = document.querySelector('.alert')
     alertWrap.style.display = 'flex'
-    setTimeout(()=> {
-      alertWrap.style.display = 'none'
-      document.location = '/new-contact'
-    },3500)
+    setTimeout(()=> {alertWrap.style.display = 'none'},3500)
   }
-  
-  const handleSubmit = (values, {setSubmitting}) => {
-    console.log(values);
-    if(values){
-      alert()
-    }
-    setSubmitting(true)
+
+  const handleSubmit = (values, {setSubmitting, resetForm}) => {
+    if(values) alert()
+
+    onNewContact(values)
+
+    setTimeout(()=> {
+      resetForm()
+      setSubmitting(false)
+    },3500)
   }
    
   return(
@@ -78,7 +92,7 @@ const NewContact = () =>{
         <div className="modal-header">
           <h1 className='text-center'>Add new contact</h1>
         </div>
-        <Formik initialValues={initialValues} validationSchema={validationSchema}  onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
             <Form>
               <div className='input-wrap'>
@@ -116,7 +130,7 @@ const NewContact = () =>{
                   <option value="" disabled hidden>Choose status</option>
                   <option value="work">Work</option>
                   <option value="family">Family</option>
-                  <option value="freind">Freind</option>
+                  <option value="freinds">Freinds</option>
                   <option value="private">Private</option>
                 </Field>
                 <ErrorMessage name='status' component='p' className='errorMasege'/>
