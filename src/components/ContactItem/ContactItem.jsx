@@ -42,7 +42,7 @@ const ContactItem = ({filterStatus}) => {
                 <div>
                   <p className='status'>{contact.status}</p>
                   <img src={contact.favorite === true ? fillYelow : fillNone} alt="star" onClick={() => setStar(contact.id)}/>
-                  <Link to={`/update-contact/${contact.id}`}>
+                  <Link to={`/contact-list/update-contact/${contact.id}`}>
                     <img src={change} alt="change"/>
                   </Link>
                   <img src={bin} alt="bin" onClick={() => handleDeleteContact(contact.id)}/>

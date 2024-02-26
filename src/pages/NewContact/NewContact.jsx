@@ -89,7 +89,7 @@ const NewContact = () =>{
             <p>You have added a new contact</p>
             <div className='btn-wrap'>
               <div className="btn">
-                <Link className="link" to='/'>Back to home</Link>
+                <Link className="link" to='/contact-list/'>Back to home</Link>
               </div>
             </div>
           </div>

@@ -22,7 +22,7 @@ const NotFound = () =>{
                 <p>Your search has ventured beyond the known universe.</p>
                 <div className="btn-wrap">
                   <div className="btn">
-                    <Link className="link" to='/'>Back To Home</Link>
+                    <Link className="link" to='/contact-list/'>Back To Home</Link>
                   </div>
                 </div>
               </div>

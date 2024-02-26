@@ -23,9 +23,9 @@ function App() {
       <Router>
         <Header/>
         <Routes>
-          <Route path='/' element={<ContactList />}/>  
-          <Route path='/new-contact' element={<NewContant/>} />
-          <Route path='/update-contact/:id' element={<UpdateContact/>}/>
+          <Route path='/contact-list' element={<ContactList />}/>  
+          <Route path='/contact-list/new-contact' element={<NewContant/>} />
+          <Route path='/contact-list/update-contact/:id' element={<UpdateContact/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
         <Footer/>

@@ -44,7 +44,7 @@ const UpdateContact = () =>{
 
   const handleSubmit = (values) => {
     dispatch(changeContact(values))
-    navigate('/')
+    navigate('/contact-list/')
   }
 
    return(

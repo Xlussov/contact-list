@@ -9,8 +9,8 @@ const Header = () =>{
         <div className="row">
           <div className="header-wraper">
             <div className="header-links">
-              <Link className="navbar-brand" to='/'>Contact List</Link>
-              <Link className="navbar-brand" to='/new-contact'>Add new</Link>
+              <Link className="navbar-brand" to='/contact-list/'>Contact List</Link>
+              <Link className="navbar-brand" to='/contact-list/new-contact'>Add new</Link>
             </div>
             <div className="header-search">
               <input type="text" className="form-control" placeholder="Search..."/>
