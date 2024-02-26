@@ -1,0 +1,35 @@
+.settings{
+   position: relative;
+   margin-left: auto;
+   padding-right: 5px;
+   border-bottom: none;
+
+   button{
+      background-color: transparent;
+      position: relative;
+      top: 3px;
+   }
+   
+   img{
+      transition: .3s all ease-in-out;
+      width: 20px;
+      cursor: pointer;
+   }
+
+   input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0px;
+      height: 0px;
+      top: 0px;
+      left: 0px;
+   }    
+   
+   input:checked + label{
+      img{
+         transition: .35s all ease-in-out;
+         transform: rotate(180deg);
+         width: 23px;
+      }
+   }
+}

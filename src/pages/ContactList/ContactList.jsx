@@ -1,54 +1,59 @@
 import './ContactList.scss'
 
-import { useState } from 'react'
+import { useSelector } from 'react-redux'; 
+
 import ContactItem from '../../components/ContactItem/ContactItem'
+
+import SettingAlert from '../../components/settingsAlert/SettingsAlert'
+
+import SettingsBtn from '../../components/SettingsBtn/settingsBtn';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-const ContactList = ({ stor, onDeleteContact, onselectstart }) =>{
+import { useState } from 'react';
+
+
+const ContactList = ({ }) =>{
   const body = document.querySelector('body')
   body.style.backgroundColor = '#fff'
-  // console.log(onDeleteContact);
-  const totalContacts = {
-    work: 0,
-    family: 0,
-    private: 0,
-    freinds: 0,
-  }
 
-  stor.forEach(contact => {
+  const contacts = useSelector(state => state.contacts)
+  const status = useSelector(state => state.status)
+
+  const totalContacts = {}
+
+  status.forEach(status => {
+    totalContacts[status] = 0
+  })
+
+  contacts.forEach(contact => {
+    totalContacts.all += 1
     totalContacts[contact.status] += 1
   })
+
+  const [ alertOpen, setAlertOpen ] = useState(false)
 
   return(
     <>
       <div className="ContactList">
+        {alertOpen ? <SettingAlert setAlertOpen={setAlertOpen} /> : ''}
         <div className="container rounded">
           <div className="row">
             <Tabs>
-              <TabList className='tabList'>
-                <Tab className='tab'>All({stor.length})</Tab>
-                <Tab className='tab'>Family({stor.length !== null ? totalContacts.family : 0})</Tab>
-                <Tab className='tab'>Freinds({stor.length !== null ? totalContacts.freinds : 0})</Tab>
-                <Tab className='tab'>Work({stor.length !== null ? totalContacts.work : 0})</Tab>
-                <Tab className='tab'>Private({stor.length !== null ? totalContacts.private : 0})</Tab>
-              </TabList>
+              <div className='tabWraper'>
+                <TabList className='tabList'>
+                  {status.map(status => (
+                    <Tab className='tab'>{status}({contacts.length !== null ? totalContacts[status] : 0})</Tab>
+                  ))}
+                </TabList>
 
-              <TabPanel>
-                <ContactItem stor={stor} filterStatus={'all'} onDeleteContact={onDeleteContact} onselectstart={onselectstart}/>
-              </TabPanel>
-              <TabPanel>
-                <ContactItem stor={stor} filterStatus={'family'} onDeleteContact={onDeleteContact} onselectstart={onselectstart}/>
-              </TabPanel>
-              <TabPanel>
-                <ContactItem stor={stor} filterStatus={'freinds'} onDeleteContact={onDeleteContact} onselectstart={onselectstart}/>
-              </TabPanel>
-              <TabPanel>
-                <ContactItem stor={stor} filterStatus={'work'} onDeleteContact={onDeleteContact} onselectstart={onselectstart}/>
-              </TabPanel>
-              <TabPanel>
-                <ContactItem stor={stor} filterStatus={'private'} onDeleteContact={onDeleteContact} onselectstart={onselectstart}/>
-              </TabPanel>
+                <SettingsBtn setAlertOpen={setAlertOpen} alertOpen={alertOpen}/>
+              </div>
+              {status.map((status) => (
+                <TabPanel>
+                  <ContactItem filterStatus={status}/>
+                </TabPanel>
+              ))}
             </Tabs>
           </div>
         </div>
@@ -58,3 +63,9 @@ const ContactList = ({ stor, onDeleteContact, onselectstart }) =>{
  }
  
  export default ContactList
+
+
+
+
+
+

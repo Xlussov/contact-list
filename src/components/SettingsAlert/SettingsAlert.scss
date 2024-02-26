@@ -1,0 +1,103 @@
+.settingAlert{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0,0,0,0.3);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 10;
+   .wrap{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .settings-window{
+         width: auto;
+         background-color: white;
+         border-radius: 13px;
+         padding: 20px 35px;
+         nav{
+            display: flex;
+            justify-content: space-between;
+            h4{
+               font-size: 20px;
+               font-weight: 500;
+            }
+            button{
+               position: relative;
+               background-color: transparent;
+               img{
+                  transition: .3 all linear;
+                  position: relative;
+                  cursor: pointer;
+                  width: 18px;
+                  &:hover{
+                     transition: .35 all ease-in-out;
+                     width: 20px;
+                  }
+               }
+            }
+         }
+         .content{
+            z-index: 20;
+            margin-top: 20px;
+            ul {
+               li{
+                  // input, p{
+                     background-color: transparent;
+                     font-size: 18px;
+                     width: 180px;
+                     text-align: center;
+                     color: rgb(71, 71, 71);
+                     border-bottom: 1px solid rgb(231, 231, 231);
+                     margin: 10px;
+                     padding: 5px 0px;
+                  // }
+               }
+               li {
+                  display: flex;
+                  img{
+                     z-index: 10;
+                     background-color: white;
+                     position: relative;
+                     width: 18px;
+                  }
+                  p {
+                     min-height: 17px;
+                  }
+                  input{
+                     background-color: transparent;
+                     font-size: 18px;
+                     max-width: 180px;
+                     text-align: center;
+                     color: rgb(71, 71, 71);
+                     // height: 18px;
+                  }
+               }
+               .listPath0 {
+                  display: none;
+               }
+               .addNewCategory{
+                  margin: 10px;
+                  padding: 5px 10px;
+                  font-size: 18px;
+                  cursor: pointer;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border: 1px solid rgb(231, 231, 231);
+                  border-radius: 7px;
+                  img{
+                     width: 20px;
+                     padding-right: 5px;
+                     
+                  }
+               }
+            }
+         }
+      }
+   }
+}

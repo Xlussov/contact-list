@@ -4,14 +4,17 @@ import {Formik, Form, Field, ErrorMessage} from 'formik'
 
 import { v4 as uuidv4 } from 'uuid';
 
-import { Link , useNavigate} from "react-router-dom"
-// import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 import Successmark from '../../img/Successmark.svg'
 
 import { validationSchema } from './Validation/validation.js'
 
-const NewContact = ({onNewContact}) =>{
+import { useDispatch, useSelector } from 'react-redux'; 
+
+import { addContact } from '../../redux/actions.js';
+
+const NewContact = () =>{
   // const xhr = new XMLHttpRequest();
 
   // // Открываем соединение с сервером и указываем метод запроса и URL-адрес файла
@@ -40,9 +43,15 @@ const NewContact = ({onNewContact}) =>{
 // }
 
 
+  const dispatch = useDispatch()
+  const status = useSelector(state => state.status)
 
   const body = document.querySelector('body')
   body.style.backgroundColor = '#fff'
+
+  const validationSchemaInt = validationSchema(status)
+
+
   const initialValues = {
     id: uuidv4(),
     name: '',
@@ -54,19 +63,16 @@ const NewContact = ({onNewContact}) =>{
     favorite: false,
   }
 
-
-
-  // const navigate = useNavigate()
   const alert = () => {
     const alertWrap = document.querySelector('.alert')
     alertWrap.style.display = 'flex'
     setTimeout(()=> {alertWrap.style.display = 'none'},3500)
   }
 
-  const handleSubmit = (values, {setSubmitting, resetForm}) => {
+  const handleSubmit = (values) => {
     if(values) alert()
 
-    onNewContact(values)
+    dispatch(addContact(values))
 
     setTimeout(()=> {
       resetForm()
@@ -92,7 +98,7 @@ const NewContact = ({onNewContact}) =>{
         <div className="modal-header">
           <h1 className='text-center'>Add new contact</h1>
         </div>
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} validationSchema={validationSchemaInt} onSubmit={handleSubmit}>
           {({ isSubmitting }) => (
             <Form>
               <div className='input-wrap'>
@@ -128,10 +134,20 @@ const NewContact = ({onNewContact}) =>{
                 <label htmlFor="status">Status</label>
                 <Field as='select' name='status'> 
                   <option value="" disabled hidden>Choose status</option>
-                  <option value="work">Work</option>
+                  {status.map(status => {
+                    if(status === 'all'){
+                      return
+                    }else {
+                      return (
+                        <option value={status}>{status}</option>
+                      )
+                    }
+                  }
+                  )}
+                  {/* <option value="work">Work</option>
                   <option value="family">Family</option>
                   <option value="freinds">Freinds</option>
-                  <option value="private">Private</option>
+                  <option value="private">Private</option> */}
                 </Field>
                 <ErrorMessage name='status' component='p' className='errorMasege'/>
               </div>

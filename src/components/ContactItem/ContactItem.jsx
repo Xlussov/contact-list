@@ -1,25 +1,36 @@
 import './ContactItem.scss';
+import { useSelector, useDispatch } from 'react-redux'; 
+
+import { changeFavorite, deleteContact } from '../../redux/actions'; 
+
+import { Link } from "react-router-dom"
+
 import fillNone from '../../img/fill-none.svg'
 import fillYelow from '../../img/fill-yellow.svg'
 import change from '../../img/change.svg'
 import bin from '../../img/bin.svg'
 
-const ContactItem = ({ stor, filterStatus, onDeleteContact, onselectstart }) => {
+
+
+const ContactItem = ({filterStatus}) => {
   const imgSrc = (num, gender) => {
     return `https://randomuser.me/api/portraits/${gender}/${num}.jpg`
   }
 
-  const deleteContact = (id) => {
-    onDeleteContact(id)
+  const contacts = useSelector(state => state.contacts)
+  const dispatch = useDispatch()
+
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id))
   }
 
-  const setStar = (id) =>{
-    onselectstart(id)
+  const setStar = (id) => {
+    dispatch(changeFavorite(id))
   }
 
   return (
     <div className='contactItem'>
-      {stor.map((contact) => (
+      {contacts.map((contact) => (
         contact.status === filterStatus || filterStatus === 'all' ? (
           <div className='personWrap' key={contact.id}>
             <div className="imgWraper">
@@ -31,8 +42,10 @@ const ContactItem = ({ stor, filterStatus, onDeleteContact, onselectstart }) => 
                 <div>
                   <p className='status'>{contact.status}</p>
                   <img src={contact.favorite === true ? fillYelow : fillNone} alt="star" onClick={() => setStar(contact.id)}/>
-                  <img src={change} alt="change"/>
-                  <img src={bin} alt="bin" onClick={() => deleteContact(contact.id)}/>
+                  <Link to={`/update-contact/${contact.id}`}>
+                    <img src={change} alt="change"/>
+                  </Link>
+                  <img src={bin} alt="bin" onClick={() => handleDeleteContact(contact.id)}/>
                 </div>
               </div>
               <p><span>Email:</span> {contact.email}</p>
