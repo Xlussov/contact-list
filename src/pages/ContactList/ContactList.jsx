@@ -17,7 +17,7 @@ const ContactList = ({ }) =>{
   const body = document.querySelector('body')
   body.style.backgroundColor = '#fff'
 
-  const contacts = useSelector(state => state.contacts)
+  const contacts = useSelector(state => state.filteredContacts)
   const status = useSelector(state => state.status)
 
   const totalContacts = {}

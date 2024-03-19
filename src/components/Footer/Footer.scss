@@ -1,0 +1,44 @@
+
+footer {
+   display: block;
+   color: #333; 
+   padding: 20px 0;
+   text-align: center;
+   margin-bottom: auto;
+   margin-top: auto;
+   width: 100%;
+
+   .footer-container {
+      border-top: 1px solid rgb(194, 194, 194);
+      padding-top: 20px;
+       display: flex;
+       justify-content: space-around;
+       ul {
+           list-style: none;
+           padding: 0;
+
+           li {
+               display: inline;
+               margin-right: 20px;
+
+               a {
+                   color: #333;
+                   text-decoration: none;
+
+                   &:hover {
+                       text-decoration: underline;
+                   }
+               }
+           }
+       }
+   }
+
+   .footer-contact {
+       margin-top: 20px;
+   }
+
+
+   .footer-bottom {
+       margin-top: 20px;
+   }
+}

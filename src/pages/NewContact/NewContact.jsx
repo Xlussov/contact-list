@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { addContact } from '../../redux/actions.js';
 
+import { useState } from 'react';
+
 const NewContact = () =>{
   // const xhr = new XMLHttpRequest();
 
@@ -45,6 +47,8 @@ const NewContact = () =>{
 
   const dispatch = useDispatch()
   const status = useSelector(state => state.status)
+  const [ openAlert, setOpenAlert ] = useState(false)
+
 
   const body = document.querySelector('body')
   body.style.backgroundColor = '#fff'
@@ -63,26 +67,23 @@ const NewContact = () =>{
     favorite: false,
   }
 
-  const alert = () => {
-    const alertWrap = document.querySelector('.alert')
-    alertWrap.style.display = 'flex'
-    setTimeout(()=> {alertWrap.style.display = 'none'},3500)
-  }
-
-  const handleSubmit = (values) => {
-    if(values) alert()
+  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+    if(!values) return
+    setOpenAlert(true)
 
     dispatch(addContact(values))
 
     setTimeout(()=> {
       resetForm()
       setSubmitting(false)
+      setOpenAlert(false)
     },3500)
   }
+
    
   return(
       <div className='container form'>
-        <div className="alert">
+        {openAlert ? <div className="alert">
           <div className="text-block">
             <img src={Successmark} alt="Successmark"/>
             <h2>Successfull</h2>
@@ -93,7 +94,7 @@ const NewContact = () =>{
               </div>
             </div>
           </div>
-        </div>
+        </div> : ''}
         <div className="modal-content rounded addPage"></div>
         <div className="modal-header">
           <h1 className='text-center'>Add new contact</h1>
@@ -144,10 +145,6 @@ const NewContact = () =>{
                     }
                   }
                   )}
-                  {/* <option value="work">Work</option>
-                  <option value="family">Family</option>
-                  <option value="freinds">Freinds</option>
-                  <option value="private">Private</option> */}
                 </Field>
                 <ErrorMessage name='status' component='p' className='errorMasege'/>
               </div>

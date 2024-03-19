@@ -17,7 +17,7 @@ const ContactItem = ({filterStatus}) => {
     return `https://randomuser.me/api/portraits/${gender}/${num}.jpg`
   }
 
-  const contacts = useSelector(state => state.contacts)
+  const contacts = useSelector(state => state.filteredContacts)
   const dispatch = useDispatch()
 
   const handleDeleteContact = (id) => {

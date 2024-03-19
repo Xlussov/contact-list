@@ -98,6 +98,9 @@
       font-size: 14px;
    }
    .alert{
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
       width: 100vw;
       height: 100vh;
       z-index: 2;
@@ -106,8 +109,6 @@
       left: 50%;
       transform: translate(-50%,-50%);
       background-color: rgba(1,1,1,0.5);
-      justify-content: center;
-      align-items: center;
       .text-block{
          text-align: center;
          border-radius: 8px;

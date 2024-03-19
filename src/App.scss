@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body{
-//   background-color: #1c2128;
   height: 100vh;
   font-family: 'Urbanist', sans-serif;
 }
@@ -46,3 +45,16 @@ img{vertical-align: top;}
 
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /*Обнуление*/
+
+
+
+#root{
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+footer {
+	text-align: center;
+	margin-top: auto; 
+}

@@ -1,4 +1,4 @@
-import { SET_BOOT, ADD_CONTACT, DELETE_CONTACT, CHANGE_FAVORITE, CHANGE_CONTACT, CHANGE_STATUS, ADD_STATUS, DELETE_STATUS, REPLACEMENT_STATUS, CHANGE_STATUS_CARD} from "./type";
+import { SET_BOOT, ADD_CONTACT, DELETE_CONTACT, CHANGE_FAVORITE, CHANGE_CONTACT, CHANGE_STATUS, ADD_STATUS, DELETE_STATUS, REPLACEMENT_STATUS, CHANGE_STATUS_CARD, SET_FILTERED_CONTACTS} from "./type";
 
 export const setBoot = (object) => {
    return {
@@ -73,5 +73,13 @@ export const changeStatusCard = (oldStatus, newStatus) => {
       payload: { oldStatus, newStatus },
    }
 }
+
+export const setFilteredContacts = (filterArray) => {
+   return {
+      type: SET_FILTERED_CONTACTS,
+      payload: filterArray,
+   }
+}
+
 
 
